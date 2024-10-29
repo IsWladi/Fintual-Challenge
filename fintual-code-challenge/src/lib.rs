@@ -8,6 +8,13 @@ struct Stock {
     amount: i64,
 }
 
+#[derive(Debug)]
+#[allow(dead_code)]
+struct Profit {
+    between_dates: f64,
+    annualized_return: i64,
+}
+
 #[allow(dead_code)]
 struct Portfolio {
     stocks: Box<[Stock]>,
@@ -15,7 +22,7 @@ struct Portfolio {
 
 #[allow(dead_code)]
 impl Portfolio {
-    pub fn profit(&self, initial_date: &str, final_date: &str) -> f64 {
+    pub fn profit(&self, initial_date: &str, final_date: &str) -> Profit {
         // Create the connection to the API
         let stock_api = StockAPI::new();
 
@@ -32,7 +39,10 @@ impl Portfolio {
             // Add the profit of each stock
             total_profit += (final_price - initial_price) * stock.amount as f64;
         }
-        total_profit
+        Profit {
+            between_dates: total_profit,
+            annualized_return: 0,
+        }
     }
 }
 
@@ -54,7 +64,8 @@ mod tests {
         };
 
         let profit = portfolio.profit("2024-01-01", "2024-01-03");
-        assert_eq!(profit, 20.0);
+        assert_eq!(profit.between_dates, 20.0); // profit between dates
+        assert_eq!(profit.annualized_return, 0); // annualized return
     }
 
     #[test]
@@ -79,6 +90,6 @@ mod tests {
         };
 
         let profit = portfolio.profit("2024-01-02", "2024-01-03");
-        assert_eq!(profit, 515.0);
+        assert_eq!(profit.between_dates, 515.0);
     }
 }
