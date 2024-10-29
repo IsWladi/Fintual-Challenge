@@ -8,3 +8,6 @@ Bonus Track: make the Profit method return the "annualized return" of the portfo
 
 ## Undestanding the code challenge
 ![Understanding the challenge](https://github.com/user-attachments/assets/5f90ff4d-435d-4dd3-9d4a-09fee0d0de11)
+
+## Results of the code tests
+![image](https://github.com/user-attachments/assets/fa2fb10a-840f-40e3-a873-65195b6f086e)
