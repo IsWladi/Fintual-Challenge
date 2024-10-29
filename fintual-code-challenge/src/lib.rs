@@ -41,7 +41,7 @@ impl Portfolio {
         }
         Profit {
             between_dates: total_profit,
-            annualized_return: 0,
+            annualized_return: 0, // Not implemented yet
         }
     }
 }
@@ -65,7 +65,6 @@ mod tests {
 
         let profit = portfolio.profit("2024-01-01", "2024-01-03");
         assert_eq!(profit.between_dates, 20.0); // profit between dates
-        assert_eq!(profit.annualized_return, 0); // annualized return
     }
 
     #[test]
